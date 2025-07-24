@@ -48,6 +48,7 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -92,6 +93,10 @@ export default function Contact() {
     setActiveFaq(activeFaq === id ? null : id)
   }
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
   return (
     <>
       {/* Header */}
@@ -103,20 +108,26 @@ export default function Contact() {
               <span>CodeHive Labs</span>
             </div>
             
-            <div className="nav-menu">
-              <Link href="/" className="nav-link">
+            <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+              <Link href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
                 <i className="fas fa-home"></i>
                 <span>Home</span>
               </Link>
-              <Link href="/gallery" className="nav-link">
+              <Link href="/gallery" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
                 <i className="fas fa-project-diagram"></i>
                 <span>Projects</span>
               </Link>
-              <Link href="/contact" className="nav-link">
+              <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
                 <i className="fas fa-envelope"></i>
                 <span>Contact</span>
               </Link>
             </div>
+            
+            <button className="nav-toggle" onClick={toggleMobileMenu}>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+            </button>
           </div>
         </nav>
       </header>

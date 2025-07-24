@@ -8,6 +8,7 @@ import { Code, Rocket, Mail, Laptop, Smartphone, Database, Bot, ChevronUp } from
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     // Simulate loading screen
@@ -29,6 +30,10 @@ export default function Home() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
   if (isLoading) {
@@ -62,20 +67,26 @@ export default function Home() {
               <span>CodeHive Labs</span>
             </div>
             
-            <div className="nav-menu">
-              <Link href="/" className="nav-link">
+            <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+              <Link href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
                 <i className="fas fa-home"></i>
                 <span>Home</span>
               </Link>
-              <Link href="/gallery" className="nav-link">
+              <Link href="/gallery" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
                 <i className="fas fa-project-diagram"></i>
                 <span>Projects</span>
               </Link>
-              <Link href="/contact" className="nav-link">
+              <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
                 <i className="fas fa-envelope"></i>
                 <span>Contact</span>
               </Link>
             </div>
+            
+            <button className="nav-toggle" onClick={toggleMobileMenu}>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+            </button>
           </div>
         </nav>
       </header>
