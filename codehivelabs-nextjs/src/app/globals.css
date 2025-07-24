@@ -42,6 +42,50 @@ body {
   max-width: 100vw;
 }
 
+/* Hide scrollbars but keep scroll functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Specific sections that might have scrollbars */
+.container,
+.main-content,
+.hero-content,
+.features-grid,
+.categories-grid,
+.about-content,
+.stats,
+.tech-stack,
+.footer-content,
+.testimonials-grid,
+.projects-grid,
+.contact-content,
+.nav-menu {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.container::-webkit-scrollbar,
+.main-content::-webkit-scrollbar,
+.hero-content::-webkit-scrollbar,
+.features-grid::-webkit-scrollbar,
+.categories-grid::-webkit-scrollbar,
+.about-content::-webkit-scrollbar,
+.stats::-webkit-scrollbar,
+.tech-stack::-webkit-scrollbar,
+.footer-content::-webkit-scrollbar,
+.testimonials-grid::-webkit-scrollbar,
+.projects-grid::-webkit-scrollbar,
+.contact-content::-webkit-scrollbar,
+.nav-menu::-webkit-scrollbar {
+  display: none;
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -3311,9 +3355,9 @@ body::before {
   .cta,
   .footer {
     break-inside: avoid;
-  }
-  
-  body {
+}
+
+body {
     background: white !important;
     color: black !important;
   }
