@@ -272,7 +272,7 @@ export default function Gallery() {
               viewport={{ once: true }}
             >
               <h2>Ready to Start Your Project?</h2>
-              <p>Let's collaborate to bring your vision to life with cutting-edge technology and innovative solutions.</p>
+                              <p>Let&apos;s collaborate to bring your vision to life with cutting-edge technology and innovative solutions.</p>
               <div className="cta-buttons">
                 <Link href="/contact" className="btn btn-primary btn-large">
                   <i className="fas fa-envelope"></i>
@@ -350,7 +350,7 @@ export default function Gallery() {
             <div className="testimonials-grid">
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding."</p>
+                  <p>&quot;CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding.&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
@@ -362,7 +362,7 @@ export default function Gallery() {
               
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love."</p>
+                  <p>&quot;Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love.&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
@@ -374,7 +374,7 @@ export default function Gallery() {
               
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!"</p>
+                  <p>&quot;The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">

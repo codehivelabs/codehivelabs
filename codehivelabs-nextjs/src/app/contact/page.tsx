@@ -134,7 +134,7 @@ export default function Contact() {
             >
               <h1 className="contact-title">Get In Touch</h1>
               <p className="contact-subtitle">
-                Ready to start your next project? Let's discuss how we can bring your ideas to life with cutting-edge technology and innovative solutions.
+                Ready to start your next project? Let&apos;s discuss how we can bring your ideas to life with cutting-edge technology and innovative solutions.
               </p>
               <Link href="/" className="back-link">
                 <ChevronLeft className="w-4 h-4" />
@@ -237,7 +237,7 @@ export default function Contact() {
                   {submitStatus === 'success' && (
                     <div className="success-message">
                       <i className="fas fa-check-circle"></i>
-                      <span>Message sent successfully! We'll get back to you soon.</span>
+                      <span>Message sent successfully! We&apos;ll get back to you soon.</span>
                     </div>
                   )}
 
@@ -258,7 +258,7 @@ export default function Contact() {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <h2>Contact Information</h2>
-                <p>Get in touch with us through any of these channels. We're here to help bring your ideas to life.</p>
+                <p>Get in touch with us through any of these channels. We&apos;re here to help bring your ideas to life.</p>
                 
                 <div className="contact-methods">
                   <div className="contact-method">
@@ -268,7 +268,7 @@ export default function Contact() {
                     <div className="contact-details">
                       <h3>Email</h3>
                       <p>codehivelabs@gmail.com</p>
-                      <span>We'll respond within 24 hours</span>
+                      <span>We&apos;ll respond within 24 hours</span>
                     </div>
                   </div>
 
@@ -424,7 +424,7 @@ export default function Contact() {
             <div className="testimonials-grid">
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding."</p>
+                  <p>&quot;CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding.&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
@@ -436,7 +436,7 @@ export default function Contact() {
               
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love."</p>
+                  <p>&quot;Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love.&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
@@ -448,7 +448,7 @@ export default function Contact() {
               
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!"</p>
+                  <p>&quot;The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">

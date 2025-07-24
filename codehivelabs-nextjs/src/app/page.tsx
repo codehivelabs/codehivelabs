@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Code, Rocket, Mail, Laptop, Smartphone, Database, Bot, Users, Clock, Star, ChevronUp } from 'lucide-react'
+import { Code, Rocket, Mail, Laptop, Smartphone, Database, Bot, ChevronUp } from 'lucide-react'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -100,7 +100,7 @@ export default function Home() {
               <p className="hero-subtitle">Where Innovation Meets Code</p>
               <p className="hero-description">
                 Transform your ideas into reality! We specialize in cutting-edge software development, 
-                AI/ML solutions, web applications, and innovative coding projects. From startups to enterprises - we've got you covered!
+                AI/ML solutions, web applications, and innovative coding projects. From startups to enterprises - we&apos;ve got you covered!
               </p>
               <div className="hero-buttons">
                 <Link href="/gallery" className="btn btn-primary">
@@ -121,8 +121,8 @@ export default function Home() {
             >
               <div className="code-animation">
                 <div className="code-line"><span className="keyword">function</span> <span className="function">initializeProject</span>() {`{`}</div>
-                <div className="code-line indent">console.<span className="method">log</span>(<span className="string">"Welcome to CodeHive Labs"</span>);</div>
-                <div className="code-line indent"><span className="keyword">return</span> <span className="string">"Innovation"</span>;</div>
+                <div className="code-line indent">console.<span className="method">log</span>(<span className="string">&quot;Welcome to CodeHive Labs&quot;</span>);</div>
+                <div className="code-line indent"><span className="keyword">return</span> <span className="string">&quot;Innovation&quot;</span>;</div>
                 <div className="code-line">{`}`}</div>
               </div>
             </motion.div>
@@ -372,7 +372,7 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2>Ready to Start Your Next Project?</h2>
-              <p>Let's collaborate to bring your vision to life with cutting-edge technology and innovative solutions. From concept to deployment, we've got you covered!</p>
+                              <p>Let&apos;s collaborate to bring your vision to life with cutting-edge technology and innovative solutions. From concept to deployment, we&apos;ve got you covered!</p>
               <div className="cta-buttons">
                 <Link href="/contact" className="btn btn-primary btn-large">
                   <Mail className="w-5 h-5" />
@@ -450,7 +450,7 @@ export default function Home() {
             <div className="testimonials-grid">
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding."</p>
+                  <p>&quot;CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding.&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
@@ -462,7 +462,7 @@ export default function Home() {
               
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love."</p>
+                  <p>&quot;Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love.&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
@@ -474,7 +474,7 @@ export default function Home() {
               
               <div className="testimonial-item">
                 <div className="testimonial-content">
-                  <p>"The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!"</p>
+                  <p>&quot;The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!&quot;</p>
                 </div>
                 <div className="testimonial-author">
                   <div className="author-info">
