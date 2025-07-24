@@ -1,4 +1,5 @@
 [build]
+  base = "codehivelabs-nextjs"
   command = "npm run build:static"
   publish = "out"
 
