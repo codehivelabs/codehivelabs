@@ -1,48 +1,21 @@
 'use client'
 
-import { useState, useEffect, useMemo, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Rocket, Mail, Laptop, Smartphone, Database, Bot, ChevronUp } from 'lucide-react'
+import { Code, Rocket, Mail, Laptop, Smartphone, Database, Bot, ChevronUp } from 'lucide-react'
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true)
   const [showBackToTop, setShowBackToTop] = useState(false)
-  const [typedCount, setTypedCount] = useState(0)
-  const [isInView, setIsInView] = useState(false)
-  const codeRef = useRef<HTMLDivElement | null>(null)
-
-  // Define the code to type as syntax-highlighted segments
-  const codeSegments = useMemo(
-    () => [
-      { text: 'function', className: 'keyword' },
-      { text: ' ' },
-      { text: 'initializeProject', className: 'function' },
-      { text: '() ' },
-      { text: '{' },
-      { text: '\n' },
-      { text: '  ' },
-      { text: 'console', className: 'method' },
-      { text: '.' },
-      { text: 'log', className: 'method' },
-      { text: '(' },
-      { text: '"Welcome to CodeHive Labs"', className: 'string' },
-      { text: ');' },
-      { text: '\n' },
-      { text: '  ' },
-      { text: 'return', className: 'keyword' },
-      { text: ' ' },
-      { text: '"Innovation"', className: 'string' },
-      { text: ';' },
-      { text: '\n' },
-      { text: '}' },
-      { text: '\n' },
-    ],
-    []
-  )
-
-  const totalChars = useMemo(() => codeSegments.reduce((sum, seg) => sum + (seg.text === '\n' ? 0 : seg.text.length), 0), [codeSegments])
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
+    // Simulate loading screen
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+
     // Back to top functionality
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300)
@@ -50,80 +23,74 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll)
     return () => {
+      clearTimeout(timer)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
-  // Observe when code block is in view
-  useEffect(() => {
-    if (!codeRef.current) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => setIsInView(entry.isIntersecting))
-      },
-      { threshold: 0.2 }
-    )
-    observer.observe(codeRef.current)
-    return () => observer.disconnect()
-  }, [])
-
-  // Typewriter effect (single run when visible)
-  useEffect(() => {
-    if (!isInView) return
-    setTypedCount(0)
-    const TYPING_MS = 60
-    let intervalId: number | undefined
-    intervalId = window.setInterval(() => {
-      setTypedCount((prev) => {
-        if (prev >= totalChars) {
-          if (intervalId) window.clearInterval(intervalId)
-          return prev
-        }
-        return prev + 1
-      })
-    }, TYPING_MS)
-    return () => {
-      if (intervalId) window.clearInterval(intervalId)
-    }
-  }, [isInView, totalChars])
-
-  // Build the rendered segments based on typedCount
-  const renderedSegments = useMemo(() => {
-    let remaining = typedCount
-    const nodes: React.ReactNode[] = []
-    codeSegments.forEach((seg, i) => {
-      if (seg.text === '\n') {
-        nodes.push(<br key={`br-${i}`} />)
-        return
-      }
-      const take = Math.max(0, Math.min(seg.text.length, remaining))
-      const partial = seg.text.slice(0, take)
-      if (partial.length > 0) {
-        if (seg.className) {
-          nodes.push(
-            <span key={`seg-${i}`} className={seg.className}>
-              {partial}
-            </span>
-          )
-        } else {
-          nodes.push(
-            <span key={`seg-${i}`}>{partial}</span>
-          )
-        }
-      }
-      remaining -= take
-    })
-    return nodes
-  }, [typedCount, codeSegments])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="loading-screen">
+        <div className="loading-content">
+          <div className="terminal">
+            <div className="terminal-header">
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+            </div>
+            <div className="terminal-body">
+              <span className="typing-text">Initializing CodeHive Labs...</span>
+              <span className="cursor">|</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
+      {/* Header */}
+      <header className="header">
+        <nav className="navbar">
+          <div className="nav-container">
+            <div className="nav-logo">
+              <Code className="text-3xl" />
+              <span>CodeHive Labs</span>
+            </div>
+            
+            <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+              <Link href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-home"></i>
+                <span>Home</span>
+              </Link>
+              <Link href="/gallery" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-project-diagram"></i>
+                <span>Projects</span>
+              </Link>
+              <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-envelope"></i>
+                <span>Contact</span>
+              </Link>
+            </div>
+            
+            <button className="nav-toggle" onClick={toggleMobileMenu}>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+            </button>
+          </div>
+        </nav>
+      </header>
+
       {/* Main Content */}
       <main className="main-content">
         {/* Hero Section */}
@@ -163,11 +130,11 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div ref={codeRef} className="code-animation">
-                <pre className="code-pre">
-                  {renderedSegments}
-                  <span className="typing-cursor">|</span>
-                </pre>
+              <div className="code-animation">
+                <div className="code-line"><span className="keyword">function</span> <span className="function">initializeProject</span>() {`{`}</div>
+                <div className="code-line indent">console.<span className="method">log</span>(<span className="string">&quot;Welcome to CodeHive Labs&quot;</span>);</div>
+                <div className="code-line indent"><span className="keyword">return</span> <span className="string">&quot;Innovation&quot;</span>;</div>
+                <div className="code-line">{`}`}</div>
               </div>
             </motion.div>
           </div>
@@ -438,7 +405,103 @@ export default function Home() {
         </section>
       </main>
 
-      
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-section footer-about">
+              <div className="logo-section">
+                <Code className="text-3xl" />
+                <span>CodeHive Labs</span>
+              </div>
+              <p>Where innovation meets code. Building the future, one project at a time with cutting-edge technology and creative solutions.</p>
+              <div className="footer-contact-info">
+                <div className="footer-contact-item">
+                  <i className="fas fa-envelope"></i>
+                  <span>codehivelabs@gmail.com</span>
+                </div>
+                <div className="footer-contact-item">
+                  <i className="fas fa-phone"></i>
+                  <span>+91 8089965858</span>
+                </div>
+                <div className="footer-contact-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h4>Connect With Us</h4>
+              <p>Follow us on social media for the latest updates, tech insights, and project showcases.</p>
+              <div className="social-links">
+                <a href="https://github.com/codehivelabs" className="social-link">
+                  <i className="fab fa-github"></i>
+                  <span>GitHub</span>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-linkedin"></i>
+                  <span>LinkedIn</span>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-twitter"></i>
+                  <span>Twitter</span>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-instagram"></i>
+                  <span>Instagram</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="footer-testimonials">
+            <h3>What Our Clients Say</h3>
+            <div className="testimonials-grid">
+              <div className="testimonial-item">
+                <div className="testimonial-content">
+                  <p>&quot;CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding.&quot;</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <span>CEO, TechStart Inc.</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="testimonial-item">
+                <div className="testimonial-content">
+                  <p>&quot;Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love.&quot;</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-info">
+                    <h4>Michael Chen</h4>
+                    <span>Founder, InnovateMobile</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="testimonial-item">
+                <div className="testimonial-content">
+                  <p>&quot;The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!&quot;</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-info">
+                    <h4>Emily Rodriguez</h4>
+                    <span>CTO, DataFlow Solutions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>&copy; 2025 CodeHive Labs. All rights reserved. | Built with <i className="fas fa-heart"></i> and <i className="fas fa-coffee"></i> | Crafted for Innovation</p>
+          </div>
+        </div>
+      </footer>
 
       {/* Back to Top Button */}
       {showBackToTop && (

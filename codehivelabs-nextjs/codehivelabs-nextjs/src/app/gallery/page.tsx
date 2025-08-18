@@ -63,11 +63,11 @@ const projects = [
   },
   {
     id: 6,
-    title: "Image-Recognition System",
+    title: "Image-Recoginition System",
     description: "Computer vision system for object detection and image classification using deep learning.",
     image: "/images/projects/face.gif",
     category: "AI & Machine Learning",
-    technologies: ["OpenCV", "Socket.io", "Python", "MongoDB", "PyTorch"],
+    technologies: ["OpenCV", "Socket.io", "Python", "MongoDB", "Pytorch"],
     github: "https://github.com/codehivelabs/chat-app",
     live: "https://chat-demo.codehivelabs.com",
     featured: false
@@ -78,6 +78,7 @@ const categories = ["All", "Web Development", "Mobile Development", "AI & Machin
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("All")
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [filteredProjects, setFilteredProjects] = useState(projects)
 
   const handleCategoryChange = (category: string) => {
@@ -89,8 +90,45 @@ export default function Gallery() {
     }
   }
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
   return (
     <>
+      {/* Header */}
+      <header className="header">
+        <nav className="navbar">
+          <div className="nav-container">
+            <div className="nav-logo">
+              <Code className="text-3xl" />
+              <span>CodeHive Labs</span>
+            </div>
+            
+            <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+              <Link href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-home"></i>
+                <span>Home</span>
+              </Link>
+              <Link href="/gallery" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-project-diagram"></i>
+                <span>Projects</span>
+              </Link>
+              <Link href="/contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-envelope"></i>
+                <span>Contact</span>
+              </Link>
+            </div>
+            
+            <button className="nav-toggle" onClick={toggleMobileMenu}>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`bar ${isMobileMenuOpen ? 'active' : ''}`}></span>
+            </button>
+          </div>
+        </nav>
+      </header>
+
       {/* Main Content */}
       <main className="main-content">
         {/* Hero Section */}
@@ -146,7 +184,7 @@ export default function Gallery() {
         <section className="projects-section">
           <div className="container">
             <motion.div 
-              className={`projects-grid ${filteredProjects.length <= 2 ? 'projects-grid--few' : ''}`}
+              className="projects-grid"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -267,7 +305,103 @@ export default function Gallery() {
         </section>
       </main>
 
-      
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-section footer-about">
+              <div className="logo-section">
+                <Code className="text-3xl" />
+                <span>CodeHive Labs</span>
+              </div>
+              <p>Where innovation meets code. Building the future, one project at a time with cutting-edge technology and creative solutions.</p>
+              <div className="footer-contact-info">
+                <div className="footer-contact-item">
+                  <i className="fas fa-envelope"></i>
+                  <span>codehivelabs@gmail.com</span>
+                </div>
+                <div className="footer-contact-item">
+                  <i className="fas fa-phone"></i>
+                  <span>+91 8089965858</span>
+                </div>
+                <div className="footer-contact-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h4>Connect With Us</h4>
+              <p>Follow us on social media for the latest updates, tech insights, and project showcases.</p>
+              <div className="social-links">
+                <a href="https://github.com/codehivelabs" className="social-link">
+                  <i className="fab fa-github"></i>
+                  <span>GitHub</span>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-linkedin"></i>
+                  <span>LinkedIn</span>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-twitter"></i>
+                  <span>Twitter</span>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-instagram"></i>
+                  <span>Instagram</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="footer-testimonials">
+            <h3>What Our Clients Say</h3>
+            <div className="testimonials-grid">
+              <div className="testimonial-item">
+                <div className="testimonial-content">
+                  <p>&quot;CodeHive Labs delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding.&quot;</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <span>CEO, TechStart Inc.</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="testimonial-item">
+                <div className="testimonial-content">
+                  <p>&quot;Working with CodeHive Labs was a game-changer for our business. They transformed our ideas into a powerful mobile app that our users love.&quot;</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-info">
+                    <h4>Michael Chen</h4>
+                    <span>Founder, InnovateMobile</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="testimonial-item">
+                <div className="testimonial-content">
+                  <p>&quot;The AI chatbot they built for our customer service has improved our response time by 80%. Highly recommended for any tech project!&quot;</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-info">
+                    <h4>Emily Rodriguez</h4>
+                    <span>CTO, DataFlow Solutions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>&copy; 2025 CodeHive Labs. All rights reserved. | Built with <i className="fas fa-heart"></i> and <i className="fas fa-coffee"></i> | Crafted for Innovation</p>
+          </div>
+        </div>
+      </footer>
     </>
   )
 } 
