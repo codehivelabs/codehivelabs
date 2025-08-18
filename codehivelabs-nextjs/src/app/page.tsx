@@ -72,18 +72,21 @@ export default function Home() {
     if (!isInView) return
     setTypedCount(0)
     const TYPING_MS = 60
-    let intervalId: number | undefined
-    intervalId = window.setInterval(() => {
+    const id = window.setInterval(() => {
       setTypedCount((prev) => {
         if (prev >= totalChars) {
-          if (intervalId) window.clearInterval(intervalId)
+          window.clearInterval(id)
           return prev
         }
-        return prev + 1
+        const next = prev + 1
+        if (next >= totalChars) {
+          window.clearInterval(id)
+        }
+        return next
       })
     }, TYPING_MS)
     return () => {
-      if (intervalId) window.clearInterval(intervalId)
+      window.clearInterval(id)
     }
   }, [isInView, totalChars])
 
